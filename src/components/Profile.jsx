@@ -1,5 +1,5 @@
 import React from "react";
-import profile_img from "../assets/profile_img.jpg";
+import profile_img from "../assets/Rectangle 693.png";
 import { Link } from "react-router-dom";
 const Profile = () => {
   return (

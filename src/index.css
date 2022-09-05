@@ -13,3 +13,25 @@ body {
   width: 80px;
   height: 73px;
 }
+
+select.arrow-color {
+  border: 1px solid #fff;
+  background: url("assets/Polygon.png") no-repeat;
+  background-color: #fff;
+}
+select.arrow-color {
+  background-size: 16px;
+  background-position: calc(100% - 20px) 12px;
+  background-repeat: no-repeat;
+}
+.input-resim {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+.input-resim .centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
