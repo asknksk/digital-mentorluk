@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import weather from "../assets/Weather.png";
 
-// const sorguUrl = process.env.REACT_APP_SORGU_KEY; //activity=4&fuel=60&amount=600&unit=8&vehicle=3&facility_id=1&year=2022"
+const sorguUrl = process.env.REACT_APP_SORGU_URL; //activity=4&fuel=60&amount=600&unit=8&vehicle=3&facility_id=1&year=2022"
 const fullTypeUrl = process.env.REACT_APP_FUEL_TYPE_URL; // sonuna 4 veya 5 type göre gelecek
 const unitsURL = process.env.REACT_APP_UNITS_URL; // sonuna 4/5 type göre gelecek
 const Main = () => {
@@ -20,10 +20,12 @@ const Main = () => {
 
   const [fuelTypes, setFuelTypes] = useState("");
   const [unitTypes, setUnitTypes] = useState("");
+  const [sorguSonucu, setSorguSonucu] = useState("");
 
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
   };
+
   const fetchActivityType = async (activityValue) => {
     try {
       const {
@@ -45,6 +47,45 @@ const Main = () => {
       console.log(error);
     }
   };
+
+  const fetchSonucSorgulama = async () => {
+    try {
+      if (
+        inputs.activity &&
+        inputs.amount &&
+        inputs.facility_id &&
+        inputs.fuel &&
+        inputs.unit &&
+        inputs.vehicle &&
+        inputs.year
+      ) {
+        const newUrl =
+          "activity=" +
+          inputs["activity"] +
+          "&fuel=" +
+          inputs["fuel"] +
+          "&amount=" +
+          inputs["amount"] +
+          "&unit=" +
+          inputs["unit"] +
+          "&vehicle=" +
+          inputs["vehicle"] +
+          "&facility_id=" +
+          inputs["facility_id"] +
+          "&year=" +
+          inputs["year"];
+
+        const {
+          data: { data },
+        } = await axios.get(sorguUrl + newUrl);
+        // setSorguSonucu(newUrl);
+        setSorguSonucu(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     if (inputs.activity === "4") {
       fetchActivityType("4");
@@ -55,8 +96,11 @@ const Main = () => {
     }
   }, [inputs.activity]);
 
-  // console.log(fuelTypes);
-  console.log(inputs);
+  useEffect(() => {
+    fetchSonucSorgulama();
+  }, [inputs]);
+
+  console.log(sorguSonucu);
   return (
     <>
       <div className="bg-white rounded" style={{ height: "103px" }}>
@@ -94,7 +138,7 @@ const Main = () => {
                   required
                 >
                   <option value="">Seçiniz</option>
-                  <option value={randomNumber}>{randomNumber}</option>
+                  <option value="1">{randomNumber}</option>
                 </select>
               </div>
               <div className="m-3">
