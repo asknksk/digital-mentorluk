@@ -385,7 +385,7 @@ const Main = () => {
               </div>
             </div>
             {/* Sonuç alanı */}
-            <div className="col-6">
+            <div className="col-6 p-5">
               <div>
                 <h2 className="border-dark border-bottom w-50">SONUÇ ALANI</h2>
                 <p>
