@@ -4,7 +4,7 @@ import weather from "../assets/Weather.png";
 
 // const sorguUrl = process.env.REACT_APP_SORGU_KEY; //activity=4&fuel=60&amount=600&unit=8&vehicle=3&facility_id=1&year=2022"
 const fullTypeUrl = process.env.REACT_APP_FUEL_TYPE_URL; // sonuna 4 veya 5 type göre gelecek
-// const unitsURL = process.env.REACT_APP_UNITS_URL; // sonuna 4/5 type göre gelecek
+const unitsURL = process.env.REACT_APP_UNITS_URL; // sonuna 4/5 type göre gelecek
 const Main = () => {
   var maxNumber = 45;
   var randomNumber = Math.floor(Math.random() * maxNumber + 1);
@@ -19,6 +19,7 @@ const Main = () => {
   });
 
   const [fuelTypes, setFuelTypes] = useState("");
+  const [unitTypes, setUnitTypes] = useState("");
 
   const handleChange = (e) => {
     setInputs({ ...inputs, [e.target.name]: e.target.value });
@@ -33,11 +34,24 @@ const Main = () => {
       console.log(error);
     }
   };
+
+  const fetchUnitTypes = async (activityValue) => {
+    try {
+      const {
+        data: { data },
+      } = await axios.get(unitsURL + activityValue);
+      setUnitTypes(data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
     if (inputs.activity === "4") {
       fetchActivityType("4");
+      fetchUnitTypes("4");
     } else if (inputs.activity === "5") {
       fetchActivityType("5");
+      fetchUnitTypes("5");
     }
   }, [inputs.activity]);
 
@@ -149,13 +163,21 @@ const Main = () => {
                   required
                 >
                   <option value="">Seçiniz</option>
-                  {Object.values(fuelTypes)?.map((item) => {
-                    return (
-                      <option value={item["id"]} key={item["id"]}>
-                        {item["name"]}
-                      </option>
-                    );
-                  })}
+                  {inputs?.activity ? (
+                    <>
+                      {Object.values(fuelTypes)?.map((item) => {
+                        return (
+                          <option value={item["id"]} key={item["id"]}>
+                            {item["name"]}
+                          </option>
+                        );
+                      })}
+                    </>
+                  ) : (
+                    <>
+                      <option value="">Activity Type Seçiniz</option>
+                    </>
+                  )}
                 </select>
               </div>
               <div className="m-3">
@@ -173,31 +195,28 @@ const Main = () => {
                   required
                 >
                   <option value="">Seçiniz</option>
-
-                  {Object.keys(fuelTypes)
-                    .filter(
-                      (item) => fuelTypes[item].id === Number(inputs.fuel)
-                    )
-                    .map((key) => fuelTypes[key]["vehicles"])[0]
-                    ?.map((vehicle) => {
-                      return (
-                        <>
-                          <option value={vehicle["id"]} key={vehicle["id"]}>
-                            {vehicle["name"]}
-                          </option>
-                        </>
-                      );
-                    })}
-
-                  {/* {Object.keys(fuelTypes)
-                    ?.filter((key) => fuelTypes[key]["id"] === inputs["fuel"])
-                    .map((item) => {
-                      return (
-                        <option value={item["id"]} key={item["id"]}>
-                          {item["name"]}
-                        </option>
-                      );
-                    })} */}
+                  {inputs?.fuel ? (
+                    <>
+                      {Object.keys(fuelTypes)
+                        .filter(
+                          (item) => fuelTypes[item].id === Number(inputs.fuel)
+                        )
+                        .map((key) => fuelTypes[key]["vehicles"])[0]
+                        ?.map((vehicle) => {
+                          return (
+                            <>
+                              <option value={vehicle["id"]} key={vehicle["id"]}>
+                                {vehicle["name"]}
+                              </option>
+                            </>
+                          );
+                        })}
+                    </>
+                  ) : (
+                    <>
+                      (<option value="">Fuel Source Seçiniz</option>)
+                    </>
+                  )}
                 </select>
               </div>
               <div className="m-3">
@@ -229,16 +248,20 @@ const Main = () => {
                     onChange={handleChange}
                     required
                   >
+                    <option value="">Seçiniz</option>
+
                     {inputs?.activity ? (
                       <>
-                        <option value="">Seçiniz</option>
-                        <option value="1">oo</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        {Object.values(unitTypes)?.map((item) => {
+                          return (
+                            <option value={item["id"]} key={item["id"]}>
+                              {item["name"]}
+                            </option>
+                          );
+                        })}
                       </>
                     ) : (
                       <>
-                        <option value="">Seçiniz</option>
                         <option value="">Activity Type Seçiniz</option>
                       </>
                     )}
