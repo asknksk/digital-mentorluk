@@ -1,10 +1,19 @@
 import React from "react";
 import profile_img from "../assets/Rectangle 693.png";
 import { Link } from "react-router-dom";
+import { AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
+import { BiGridAlt } from "react-icons/bi";
+
+// IoDocumentOutline
+// FiMessageSquare
+// RiUserLine
+// IoSettingsOutline
+// RiRotateLockLine
+
 const Profile = () => {
   return (
     <>
-      <div className="d-flex flex-column align-items-center bg-info w-100">
+      <div className="d-flex flex-column align-items-center bg-info m-0 p-0 py-5">
         <img
           src={profile_img}
           alt="profil-resmi"
@@ -45,7 +54,7 @@ const Profile = () => {
             MENÜ
           </h3>
           <ul className="text-decoration-none text-start">
-            <li className="list-unstyled">
+            <li className="list-unstyled ">
               <Link
                 to={"/"}
                 className="text-decoration-none"
@@ -55,6 +64,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <AiOutlinePieChart />
+                </span>{" "}
                 Eğitimler
               </Link>{" "}
             </li>
@@ -68,6 +80,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <BiGridAlt />{" "}
+                </span>{" "}
                 Analiz
               </Link>{" "}
             </li>
@@ -94,6 +109,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <AiOutlineUser />
+                </span>{" "}
                 Profil
               </Link>{" "}
             </li>

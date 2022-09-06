@@ -3,6 +3,8 @@ import React, { useEffect, useState } from "react";
 import weather from "../assets/Weather.png";
 import TablePage from "./main/TablePage";
 import uuid from "react-uuid";
+import Header from "./main/Header";
+// import yesilLogo from "../assets/yesil-logo.png"
 
 const sorguUrl = process.env.REACT_APP_SORGU_URL; //activity=4&fuel=60&amount=600&unit=8&vehicle=3&facility_id=1&year=2022
 const fullTypeUrl = process.env.REACT_APP_FUEL_TYPE_URL; // sonuna 4 veya 5 type göre gelecek
@@ -172,14 +174,19 @@ const Main = () => {
   console.log(inputs);
   return (
     <>
-      <div className="bg-white rounded" style={{ height: "103px" }}>
-        <div></div>
-        <div></div>
+      <div className="bg-white rounded row m-0 p-0 py-2">
+        <Header />
       </div>
       <form onSubmit={handleSubmit}>
         <div className="bg-light">
-          <div className="bg-info">
-            <h3 className="text-center text-light ">MOBILE COMBUSTION</h3>
+          <div
+            className="bg-info p-3 deneme d-flex justify-content-center align-items-center"
+            stlye={{
+              borderRadius: "5px 5px 30px 30px !important",
+            }}
+          >
+            <img src="images/yesil-logo.png" alt="yeşil-logo" />
+            <h3 className="text-center text-light m-0">MOBILE COMBUSTION</h3>
           </div>
           <div className="row text-start">
             {/* Girdi Alanı */}
@@ -281,7 +288,7 @@ const Main = () => {
                       <>
                         {Object.values(fuelTypes)?.map((item) => {
                           return (
-                            <option value={item["id"]} key={uuid()}>
+                            <option value={item["id"]} key={item["id"]}>
                               {item["name"]}
                             </option>
                           );
@@ -319,7 +326,10 @@ const Main = () => {
                           ?.map((vehicle) => {
                             return (
                               <>
-                                <option value={vehicle["id"]} key={uuid()}>
+                                <option
+                                  value={vehicle["id"]}
+                                  key={vehicle["id"]}
+                                >
                                   {vehicle["name"]}
                                 </option>
                               </>
@@ -334,12 +344,14 @@ const Main = () => {
                   </select>
                 </div>
                 <div className="m-3">
+                  <label htmlFor="amount">Amount of Activity</label>
                   <div className="input-group mb-3 w-75">
                     <input
                       type="text"
                       className="form-control"
                       // aria-label="text input with dropdown button"
                       name="amount"
+                      id="amount"
                       style={{
                         border: "2px solid #0D1840",
                         borderRight: "none",
@@ -393,7 +405,8 @@ const Main = () => {
                   miktarları aşağıdaki gibidir.
                 </p>
               </div>
-              <div className="input-group mb-3 w-75">
+
+              <div className="input-group mb-3 w-75 ">
                 <div className="input-resim">
                   <img src={weather} alt="mavi-amblem" />
                   <div className="centered">
@@ -457,7 +470,7 @@ const Main = () => {
                   disabled
                 />
               </div>
-              <div className="text-center">
+              <div className="d-flex justify-content-end ">
                 <button
                   type="reset"
                   className="btn btn-info form-button m-1"
@@ -473,8 +486,8 @@ const Main = () => {
       </form>
 
       {/* Tablo */}
-      {veriler !== [] && (
-        <div className="d-flex flex-column ">
+      {veriler.length ? (
+        <div className="d-flex flex-column overflow-hidden">
           <h2 className="text-bg-light text-start p-2 border-non fs-6">
             hesaplamalar
           </h2>
@@ -512,7 +525,7 @@ const Main = () => {
             </tbody>
           </table>
         </div>
-      )}
+      ) : null}
     </>
   );
 };
