@@ -1,6 +1,6 @@
 import React from "react";
 
-const TablePage = ({ row, handleVeriSil }) => {
+const TablePage = ({ row, handleVeriSil, handleDüzenle }) => {
   const { facility_id, year, fuel, amount, unit, co2, ch4, n2o, co2e } = row;
 
   return (
@@ -26,6 +26,7 @@ const TablePage = ({ row, handleVeriSil }) => {
         <button
           className="btn btn-info text-light mb-1"
           style={{ padding: ".2rem .5rem", fontSize: ".75rem" }}
+          onClick={() => handleDüzenle(row)}          
         >
           Düzenle
         </button>

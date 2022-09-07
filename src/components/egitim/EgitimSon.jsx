@@ -1,9 +1,10 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import NavbarEgitim from "./NavbarEgitim";
 import inovasyonNedir from "../../assets/egitim/inovasyon-nedir.png";
+import ModalComponent from "./ModalComponent";
 
 const EgitimSon = () => {
+  const [isShow, setIsShow] = useState(false);
   return (
     <>
       <NavbarEgitim />
@@ -18,12 +19,18 @@ const EgitimSon = () => {
           </div>
 
           <div style={{ marginRight: "1rem" }}>
-            <Link to="/">
-              <button className="btn slider-button ">Bitir</button>
-            </Link>
+            <button
+              className="btn slider-button "
+              onClick={() => setIsShow(!isShow)}
+            >
+              Bitir
+            </button>
           </div>
         </div>
       </div>
+      {isShow ? (
+        <ModalComponent show={isShow} onHide={() => setIsShow(false)} />
+      ) : null}
     </>
   );
 };

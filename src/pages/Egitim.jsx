@@ -12,7 +12,6 @@ const Egitim = () => {
       >
         <Carosel />
       </div>
-      
     </>
   );
 };

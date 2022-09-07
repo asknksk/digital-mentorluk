@@ -96,14 +96,14 @@ button.slick-arrow.slick-next {
 button.slick-arrow.slick-prev::before {
   content: url("./assets/egitim/arrow-left.png");
   font-size: 2rem;
-  z-index: 1;
+  z-index: 500;
   position: absolute;
 }
 
 button.slick-arrow.slick-next::before {
   content: url("./assets/egitim/arrow-right.png");
   font-size: 2rem;
-  z-index: 1;
+  z-index: 500;
   position: absolute;
 }
 .slider-img-container {
@@ -131,7 +131,7 @@ button.slick-arrow.slick-next::before {
 }
 .slick-dots {
   top: 430px;
-  z-index: 500;
+  z-index: 20;
 }
 
 .egitim-2-div {

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { toastSuccessNotify, toastWarnNotify } from "../utils/customToastify";
 import NavbarEgitim from "./NavbarEgitim";
 
 const EgitimSoru = () => {
@@ -8,14 +9,14 @@ const EgitimSoru = () => {
   const [cevaplandi, setCevaplandi] = useState(false);
 
   const handleCevap = (e) => {
-    console.log(e.target.id);
     if (!cevaplandi) {
       if (e.target.id === "dogru") {
         setIsTrue(true);
+        toastSuccessNotify("Doğru bildiniz");
         e.target.disabled = true;
-        setIsFalse(true);
       } else {
         setIsFalse(true);
+        toastWarnNotify("Yanlış bildiniz");
       }
     }
     setCevaplandi(true);
@@ -44,8 +45,9 @@ const EgitimSoru = () => {
                 id="dogru"
                 onClick={(e) => handleCevap(e)}
                 style={{
-                  backgroundColor: isTrue ? "#51FB15" : "",
-                  //   backgroundColor: isFalse ? "#F32626;" : "",
+                  backgroundColor: isTrue
+                    ? "#51FB15"
+                    : [isFalse ? "#51FB15" : ""],
                 }}
               >
                 İnovasyondur

@@ -17,29 +17,44 @@ const EgitimThree = () => {
       <NavbarEgitim />
       <div
         className="d-flex align-items-center justify-content-center"
-        style={{ marginTop: "1rem" }}
+        style={{ marginTop: "10px" }}
       >
         <div className="slider-div ">
           <Slider {...settings}>
-            <div className="slider-img-container d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-center p-0 ">
               <img
                 src={populasyon1}
                 alt="populasyon-resim"
-                style={{ height: "440px" }}
+                style={{
+                  height: "420px",
+                  userSelect: "none",
+                  marginTop: "8px",
+                }}
               />
             </div>
-            <div className="slider-img-container d-flex flex-column align-items-center">
+            <div className="d-flex flex-column align-items-center m-0 p-0 ">
               <img
                 src={populasyon2}
                 alt="populasyon-açıklama"
-                style={{ height: "440px" }}
+                style={{
+                  height: "440px",
+                  userSelect: "none",
+                  marginTop: "8px",
+                }}
               />
-              <div className="align-self-end mx-4">
-                <Link to="/egitim-page-2">
+              <div
+                className="align-self-end mx-4"
+                style={{
+                  zIndex: "500",
+                  position: "absolute",
+                  right: "50px",
+                  bottom: "75px",
+                }}
+              >
+                <Link to="/egitim-video">
                   <button className="btn slider-button ">Devam Et</button>
                 </Link>
-              </div>
-              
+              </div>{" "}
             </div>
           </Slider>
         </div>

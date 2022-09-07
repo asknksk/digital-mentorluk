@@ -4,7 +4,7 @@ import weather from "../assets/Weather.png";
 import TablePage from "./main/TablePage";
 import uuid from "react-uuid";
 import Header from "./main/Header";
-// import yesilLogo from "../assets/yesil-logo.png"
+import { toastErrorNotify, toastSuccessNotify } from "./utils/customToastify";
 
 const sorguUrl = process.env.REACT_APP_SORGU_URL; //activity=4&fuel=60&amount=600&unit=8&vehicle=3&facility_id=1&year=2022
 const fullTypeUrl = process.env.REACT_APP_FUEL_TYPE_URL; // sonuna 4 veya 5 type göre gelecek
@@ -38,6 +38,7 @@ const Main = () => {
     amount: "",
     unit: "",
   });
+  const [isKaydet, setIsKaydet] = useState("Kaydet");
 
   const [fuelTypes, setFuelTypes] = useState("");
   const [unitTypes, setUnitTypes] = useState("");
@@ -57,7 +58,7 @@ const Main = () => {
       } = await axios.get(fullTypeUrl + activityValue);
       setFuelTypes(data);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(error);
     }
   };
 
@@ -68,7 +69,7 @@ const Main = () => {
       } = await axios.get(unitsURL + activityValue);
       setUnitTypes(data);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(error);
     }
   };
 
@@ -93,10 +94,9 @@ const Main = () => {
       const {
         data: { data },
       } = await axios.get(sorguUrl + newUrl);
-      // setSorguSonucu(newUrl);
       setSorguSonucu(data);
     } catch (error) {
-      console.log(error);
+      toastErrorNotify(error);
     }
   };
 
@@ -133,6 +133,11 @@ const Main = () => {
   const id = uuid();
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isKaydet === "Düzenle") {
+      toastSuccessNotify("düzenlendi");
+
+      setIsKaydet("Kaydet");
+    }
     if (sorguSonucu) {
       const yeniVeriler = {
         id: id,
@@ -164,6 +169,24 @@ const Main = () => {
     localStorage.setItem("veriler", JSON.stringify(filtered));
     setVeriler(JSON.parse(localStorage.getItem("veriler")));
   };
+  const handleDüzenle = (row) => {
+    setIsKaydet("Düzenle");
+    const { facility_id, year, activity, fuel, vehicle, amount, unit } = row;
+    setInputs({
+      facility_id,
+      year,
+      activity,
+      fuel,
+      vehicle,
+      amount,
+      unit,
+    });
+    const filtered = veriler
+      .map((obje) => obje)
+      .filter((item) => item.facility_id !== facility_id);
+    localStorage.setItem("veriler", JSON.stringify(filtered));
+    setVeriler(JSON.parse(localStorage.getItem("veriler")));
+  };
 
   useEffect(() => {
     localStorage.setItem("veriler", JSON.stringify(veriler));
@@ -177,8 +200,7 @@ const Main = () => {
     return tarihListe;
   };
   const tarihListesi = optionRender();
-  // console.log(sorguSonucu);
-  // console.log(inputs);
+
   return (
     <>
       <div className="bg-white rounded row m-0 p-0 py-2">
@@ -214,6 +236,7 @@ const Main = () => {
                     id="facility-id"
                     aria-label="Default select example"
                     name="facility_id"
+                    value={inputs.facility_id}
                     style={{
                       border: "2px solid #0D1840",
                       borderRadius: "8px 8px 35px 8px",
@@ -222,7 +245,9 @@ const Main = () => {
                     required
                   >
                     <option value="">Seçiniz</option>
-                    <option value={randomNumber}>{randomNumber}</option>
+                    <option value={inputs.facility_id || randomNumber}>
+                      {inputs.facility_id || randomNumber}
+                    </option>
                   </select>
                 </div>
                 <div className="m-3">
@@ -232,6 +257,7 @@ const Main = () => {
                     id="year"
                     name="year"
                     aria-label="Default select example"
+                    value={inputs.year}
                     style={{
                       border: "2px solid #0D1840",
                       borderRadius: "8px 8px 35px 8px",
@@ -256,6 +282,7 @@ const Main = () => {
                     className="form-select arrow-color p-2 w-75 "
                     id="activity-type"
                     name="activity"
+                    value={inputs.activity}
                     aria-label="Default select example"
                     style={{
                       border: "2px solid #0D1840",
@@ -275,6 +302,7 @@ const Main = () => {
                     className="form-select arrow-color p-2 w-75 "
                     id="fuel-source"
                     name="fuel"
+                    value={inputs.fuel}
                     aria-label="Default select example"
                     style={{
                       border: "2px solid #0D1840",
@@ -307,6 +335,7 @@ const Main = () => {
                     className="form-select arrow-color p-2 w-75 "
                     id="vehicle-type"
                     name="vehicle"
+                    value={inputs.vehicle}
                     aria-label="Default select example"
                     style={{
                       border: "2px solid #0D1840",
@@ -344,7 +373,6 @@ const Main = () => {
                     <input
                       type="text"
                       className="form-control"
-                      // aria-label="text input with dropdown button"
                       name="amount"
                       id="amount"
                       style={{
@@ -361,6 +389,7 @@ const Main = () => {
                       id="facility-id"
                       aria-label="Default select example"
                       name="unit"
+                      value={inputs.unit}
                       style={{
                         border: "2px solid #0D1840",
                         borderLeft: "none",
@@ -473,7 +502,9 @@ const Main = () => {
                 >
                   Sıfırla
                 </button>
-                <button className="btn btn-info form-button m-1">Kaydet</button>
+                <button className="btn btn-info form-button m-1">
+                  {isKaydet}
+                </button>
               </div>
             </div>
           </div>
@@ -513,7 +544,11 @@ const Main = () => {
               {veriler?.map((row) => {
                 return (
                   <tr key={row.facility_id}>
-                    <TablePage row={row} handleVeriSil={handleVeriSil} />
+                    <TablePage
+                      row={row}
+                      handleVeriSil={handleVeriSil}
+                      handleDüzenle={handleDüzenle}
+                    />
                   </tr>
                 );
               })}
