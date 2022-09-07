@@ -3,17 +3,14 @@ import profile_img from "../assets/Rectangle 693.png";
 import { Link } from "react-router-dom";
 import { AiOutlinePieChart, AiOutlineUser } from "react-icons/ai";
 import { BiGridAlt } from "react-icons/bi";
-
-// IoDocumentOutline
-// FiMessageSquare
-// RiUserLine
-// IoSettingsOutline
-// RiRotateLockLine
-
+import { IoDocumentOutline, IoSettingsOutline } from "react-icons/io5";
+import { FiMessageSquare } from "react-icons/fi";
+import { RiUserLine, RiRotateLockLine } from "react-icons/ri";
+import timLogo from "../assets/TIM_LOGO_TR.png";
 const Profile = () => {
   return (
     <>
-      <div className="d-flex flex-column align-items-center bg-info m-0 p-0 py-5">
+      <div className="d-flex flex-column align-items-center bg-info m-0 px-0 py-5 ">
         <img
           src={profile_img}
           alt="profil-resmi"
@@ -45,7 +42,7 @@ const Profile = () => {
           </p>
         </div>
       </div>
-      <div className="p-3 roboto-font">
+      <div className="p-3 roboto-font list-section">
         <div>
           <h3
             className="text-start"
@@ -53,10 +50,10 @@ const Profile = () => {
           >
             MENÜ
           </h3>
-          <ul className="text-decoration-none text-start">
+          <ul className="text-decoration-none text-start py-0 px-3">
             <li className="list-unstyled ">
               <Link
-                to={"/"}
+                to={"/egitim"}
                 className="text-decoration-none"
                 style={{
                   color: "#343A40",
@@ -70,14 +67,14 @@ const Profile = () => {
                 Eğitimler
               </Link>{" "}
             </li>
-            <li className="list-unstyled">
+            <li className="list-unstyled bg-info rounded">
               <Link
                 to={"/"}
-                className="text-decoration-none"
+                className="text-decoration-none text-light"
                 style={{
-                  color: "#343A40",
                   fontWeight: "600",
                   fontSize: "0.9rem",
+                  
                 }}
               >
                 <span>
@@ -96,6 +93,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <IoDocumentOutline />
+                </span>{" "}
                 Raporlar
               </Link>{" "}
             </li>
@@ -125,6 +125,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <FiMessageSquare />
+                </span>{" "}
                 TİM'e Yaz
               </Link>{" "}
             </li>
@@ -137,7 +140,7 @@ const Profile = () => {
           >
             TERCİHLER
           </h3>
-          <ul className="text-decoration-none text-start">
+          <ul className="text-decoration-none text-start py-0 px-3">
             <li className="list-unstyled">
               <Link
                 to={"/"}
@@ -148,6 +151,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <RiUserLine />
+                </span>{" "}
                 Yetkilendirme
               </Link>{" "}
             </li>
@@ -161,6 +167,9 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <RiRotateLockLine />
+                </span>{" "}
                 Şifremi Değiştir
               </Link>{" "}
             </li>
@@ -174,30 +183,16 @@ const Profile = () => {
                   fontSize: "0.9rem",
                 }}
               >
+                <span>
+                  <IoSettingsOutline />
+                </span>{" "}
                 Gizlilik Politikası
               </Link>{" "}
             </li>
           </ul>
         </div>
+        <img src={timLogo} alt="" />
       </div>
-
-      {/* <div className="list-group">
-        <Link to="#" className="list-group-item list-group-item-action active">
-          Cras justo odio
-        </Link>
-        <Link to="#" className="list-group-item list-group-item-action">
-          Dapibus ac facilisis in
-        </Link>
-        <Link to="#" className="list-group-item list-group-item-action">
-          Dapibus ac facilisis in
-        </Link>
-        <Link to="#" className="list-group-item list-group-item-action">
-          Dapibus ac facilisis in
-        </Link>
-        <Link to="#" className="list-group-item list-group-item-action">
-          Dapibus ac facilisis in
-        </Link>
-      </div> */}
     </>
   );
 };

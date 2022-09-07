@@ -60,3 +60,12 @@ select.arrow-color {
 .deneme {
   border-radius: 5px 5px 30px 30px !important;
 }
+
+.list-section li {
+  line-height: 1.2rem;
+  list-style-position: outside;
+  padding: 1rem;
+}
+.list-section li span {
+  font-size: 1rem;
+}

@@ -167,11 +167,18 @@ const Main = () => {
 
   useEffect(() => {
     localStorage.setItem("veriler", JSON.stringify(veriler));
-    // handleReset();
   }, [veriler]);
 
+  let tarihListe = [];
+  const optionRender = () => {
+    for (let i = 0; i < 5; i++) {
+      tarihListe.push(new Date().getFullYear() - i);
+    }
+    return tarihListe;
+  };
+  const tarihListesi = optionRender();
   // console.log(sorguSonucu);
-  console.log(inputs);
+  // console.log(inputs);
   return (
     <>
       <div className="bg-white rounded row m-0 p-0 py-2">
@@ -233,21 +240,14 @@ const Main = () => {
                     required
                   >
                     <option value="">Seçiniz</option>
-                    <option value={new Date().getFullYear()}>
-                      {new Date().getFullYear()}
-                    </option>
-                    <option value={new Date().getFullYear() - 1}>
-                      {new Date().getFullYear() - 1}
-                    </option>
-                    <option value={new Date().getFullYear() - 2}>
-                      {new Date().getFullYear() - 2}
-                    </option>
-                    <option value={new Date().getFullYear() - 3}>
-                      {new Date().getFullYear() - 3}
-                    </option>
-                    <option value={new Date().getFullYear() - 4}>
-                      {new Date().getFullYear() - 4}
-                    </option>
+
+                    {tarihListesi.map((date) => {
+                      return (
+                        <option value={date} key={date}>
+                          {date}
+                        </option>
+                      );
+                    })}
                   </select>
                 </div>
                 <div className="m-3">
@@ -325,14 +325,9 @@ const Main = () => {
                           .map((key) => fuelTypes[key]["vehicles"])[0]
                           ?.map((vehicle) => {
                             return (
-                              <>
-                                <option
-                                  value={vehicle["id"]}
-                                  key={vehicle["id"]}
-                                >
-                                  {vehicle["name"]}
-                                </option>
-                              </>
+                              <option value={vehicle["id"]} key={vehicle["id"]}>
+                                {vehicle["name"]}
+                              </option>
                             );
                           })}
                       </>
