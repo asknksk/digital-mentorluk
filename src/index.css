@@ -69,3 +69,67 @@ select.arrow-color {
 .list-section li span {
   font-size: 1rem;
 }
+
+/* SLIDER */
+
+.slider-div {
+  background: white;
+  padding: 0;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 20px;
+}
+button.slick-arrow.slick-prev {
+  top: 400px;
+  left: 400px;
+  z-index: 500;
+}
+
+button.slick-arrow.slick-next {
+  top: 400px;
+  right: 400px;
+  z-index: 500;
+}
+
+button.slick-arrow.slick-prev::before {
+  content: url("./assets/egitim/arrow-left.png");
+  font-size: 2rem;
+  z-index: 1;
+  position: absolute;
+}
+
+button.slick-arrow.slick-next::before {
+  content: url("./assets/egitim/arrow-right.png");
+  font-size: 2rem;
+  z-index: 1;
+  position: absolute;
+}
+.slider-img-container {
+  margin: 0;
+  padding: 0;
+}
+.slider-img-container img {
+  margin: 0;
+  padding: 0;
+}
+
+/* .slider-button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+} */
+.slider-button-div {
+  padding: 11rem 0;
+  text-align: center;
+}
+.slider-button {
+  background: #024d81;
+  color: white;
+}
+@media (max-width: 950px) {
+  button.slick-arrow.slick-prev::before,
+  button.slick-arrow.slick-next::before {
+    display: none;
+  }
+}

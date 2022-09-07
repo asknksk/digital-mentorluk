@@ -1,7 +1,6 @@
-import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import React from "react";
 import { Link } from "react-router-dom";
-import { Navbar, Container, NavDropdown, Nav, Dropdown } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import inovVector from "../../assets/egitim/inovatim-vector.png";
 import timLogo from "../../assets/TIM_LOGO_TR.png";
 
@@ -12,7 +11,7 @@ const NavbarEgitim = () => {
       id="navbar"
       expand="lg"
       className="navbar navbar-expand-lg "
-      style={{ background: "white" }}
+      style={{ background: "white", width: "100%" }}
       collapseOnSelect={true}
     >
       <Navbar.Brand href="#home">
