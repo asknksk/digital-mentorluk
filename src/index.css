@@ -80,13 +80,13 @@ select.arrow-color {
   border-radius: 20px;
 }
 button.slick-arrow.slick-prev {
-  top: 400px;
+  top: 420px;
   left: 400px;
   z-index: 500;
 }
 
 button.slick-arrow.slick-next {
-  top: 400px;
+  top: 420px;
   right: 400px;
   z-index: 500;
 }
@@ -127,6 +127,10 @@ button.slick-arrow.slick-next::before {
     display: none;
   }
 }
+.slick-dots {
+  top: 430px;
+  z-index: 500;
+}
 
 .egitim-2-div {
   background: white;
@@ -134,4 +138,31 @@ button.slick-arrow.slick-next::before {
   width: 90vw;
   height: 90vh;
   border-radius: 20px;
+}
+
+.egitim-videosu {
+  border-radius: 20px;
+}
+
+.soru-p {
+  padding: 2rem;
+  width: 14rem;
+  border: 1px solid #024d81;
+  border-radius: 15px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align:center;
+}
+.maviCizgiSol,
+.maviCizgiSag {
+  background: #024d81;
+  height: 8px;
+  width: 30rem;
+}
+.maviCizgiSol {
+  border-radius: 0 3px 3px 0;
+}
+.maviCizgiSag {
+  border-radius: 3px 0 0 3px;
 }
