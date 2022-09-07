@@ -15,7 +15,7 @@ const NavbarEgitim = () => {
       collapseOnSelect={true}
     >
       <Navbar.Brand href="#home">
-        <img src={inovVector} alt="" />
+        <img src={inovVector} alt="inovatim" className="invovvector-img"/>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav ">
@@ -43,7 +43,7 @@ const NavbarEgitim = () => {
         </Nav>
       </Navbar.Collapse>
       <Navbar.Brand href="#home">
-        <img src={timLogo} alt="" />
+        <img src={timLogo} alt="timlogo" />
       </Navbar.Brand>
     </Navbar>
   );

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EgitimSon from "../components/egitim/EgitimSon";
 import EgitimSoru from "../components/egitim/EgitimSoru";
 import EgitimThree from "../components/egitim/EgitimThree";
 import EgitimTwo from "../components/egitim/EgitimTwo";
@@ -16,6 +17,7 @@ const AppRouter = () => {
         <Route path="/egitim-page-3" element={<EgitimThree />} />
         <Route path="/egitim-video" element={<EgitimVideo />} />
         <Route path="/egitim-soru" element={<EgitimSoru />} />
+        <Route path="/egitim-son" element={<EgitimSon />} />
       </Routes>
     </BrowserRouter>
   );

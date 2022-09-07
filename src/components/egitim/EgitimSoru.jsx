@@ -64,7 +64,7 @@ const EgitimSoru = () => {
           </div>
           {cevaplandi && (
             <div className="align-self-end mx-4 mt-4">
-              <Link to="/egitim-soru">
+              <Link to="/egitim-son">
                 <button className="btn slider-button ">Devam Et</button>
               </Link>
             </div>
