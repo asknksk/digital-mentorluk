@@ -1,5 +1,5 @@
 import React from "react";
-import MultipleItems from "../components/egitim/Carosel";
+import Carosel from "../components/egitim/Carosel";
 import NavbarEgitim from "../components/egitim/NavbarEgitim";
 
 const Egitim = () => {
@@ -7,11 +7,12 @@ const Egitim = () => {
     <>
       <NavbarEgitim />
       <div
-        className="d-flex align-align-items-center justify-content-center"
+        className="d-flex align-items-center justify-content-center"
         style={{ marginTop: "1rem" }}
       >
-        <MultipleItems />
+        <Carosel />
       </div>
+      
     </>
   );
 };

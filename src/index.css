@@ -113,12 +113,6 @@ button.slick-arrow.slick-next::before {
   padding: 0;
 }
 
-/* .slider-button-div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-} */
 .slider-button-div {
   padding: 11rem 0;
   text-align: center;
@@ -132,4 +126,12 @@ button.slick-arrow.slick-next::before {
   button.slick-arrow.slick-next::before {
     display: none;
   }
+}
+
+.egitim-2-div {
+  background: white;
+  padding: 0;
+  width: 90vw;
+  height: 90vh;
+  border-radius: 20px;
 }

@@ -8,6 +8,7 @@ import invosyon3 from "../../assets/egitim/inovasyon3.png";
 import invosyon4 from "../../assets/egitim/inovasyon4.png";
 import invosyon5 from "../../assets/egitim/inovasyon5.png";
 import invosyon6 from "../../assets/egitim/inovasyon6.png";
+import { Link } from "react-router-dom";
 
 const Carosel = () => {
   const settings = {
@@ -75,7 +76,9 @@ const Carosel = () => {
           <img src={invosyon6} alt="" />
         </div>
         <div className=" slider-button-div ">
-          <button className="btn slider-button ">Devam Et</button>
+          <Link to="/egitim-page-2">
+            <button className="btn slider-button ">Devam Et</button>
+          </Link>
         </div>
       </Slider>
     </div>
