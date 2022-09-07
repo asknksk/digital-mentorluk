@@ -1,9 +1,9 @@
-import React from 'react'
+import React from "react";
+import NavbarEgitim from "../components/egitim/NavbarEgitim";
 
 const Egitim = () => {
-  return (
-    <div>Egitim</div>
-  )
-}
+  return(
+  <NavbarEgitim />
+  )};
 
-export default Egitim
+export default Egitim;
